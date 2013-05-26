@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo</title>
+    <script src="~/Scripts/angular.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Demo3</h2>
+
+        <span>FirstName : <input type="text" ng-model="FirstName" /></span><br />
+        <span>LastName : <input type="text" ng-model="LastName" /></span><br />
+        <span>FullName : {{(FirstName +'  '+LastName) | uppercase}}</span>
+
+        <hr />
+
+        <span>Search All: <input type="text" ng-model="SearchKey.$" /></span><br />
+        <span>Search Name :  <input type="text" ng-model="SearchKey.Name" /></span>
+        <ul ng-init="Friends = [{ Name: 'John', Phone: '555-1276' }
+                                , { Name: 'Mary', Phone: '800-BIG-MARY' }
+                                , { Name: 'Mike', Phone: '555-4321' }
+                                , { Name: 'Adam', Phone: '555-5678' }
+                                , { Name: 'Julie', Phone: '555-8765' }]">
+            <li ng-repeat="friend in Friends | filter:SearchKey | orderBy:'Name'">
+                Name : {{friend.Name}}, Phone: {{friend.Phone}}
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>

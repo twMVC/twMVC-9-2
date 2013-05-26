@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo</title>
+    <script src="~/Scripts/angular.js"></script>
+</head>
+<body>
+    <div ng-controller="PersonCtrl">
+        <h2>Demo3</h2>
+
+        <span>FirstName : <input type="text" ng-model="vModel.FirstName" /></span><br />
+        <span>LastName : <input type="text" ng-model="vModel.LastName" /></span><br />
+        <span>FullName : {{(vModel.FirstName +'  '+vModel.LastName) | uppercase}}</span>
+
+        <hr />
+
+        <span>Search All: <input type="text" ng-model="SearchKey.$" /></span><br />
+        <span>Search Name :  <input type="text" ng-model="SearchKey.Name" /></span>
+        <ul>
+            <li ng-repeat="friend in vModel.Friends | filter:SearchKey | orderBy:'Name'">
+                Name : {{friend.Name}}, Phone: {{friend.Phone}}
+            </li>
+        </ul>
+
+    </div>
+    <script>
+        function PersonCtrl($scope) {
+            var vModel = {}
+            ;
+            $scope.vModel = vModel;
+            vModel.FirstName = 'Bibby';
+            vModel.LastName = 'Chung';
+            vModel.Friends = [{ Name: 'John', Phone: '555-1276' }
+                                , { Name: 'Mary', Phone: '800-BIG-MARY' }
+                                , { Name: 'Mike', Phone: '555-4321' }
+                                , { Name: 'Adam', Phone: '555-5678' }
+                                , { Name: 'Julie', Phone: '555-8765' }];
+        }
+    </script>
+</body>
+</html>

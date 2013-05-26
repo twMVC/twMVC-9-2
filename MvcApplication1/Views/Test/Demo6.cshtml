@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo</title>
+    <script src="~/Scripts/angular.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Demo6</h2>
+
+        <span>FirstName : <input type="text" ng-model="vModel.FirstName" /></span><br />
+        <span>LastName : <input type="text" ng-model="vModel.LastName" /></span><br />
+        <span>FullName : {{(vModel.FirstName +'  '+vModel.LastName) | uppercase}}</span>
+
+        <hr />
+
+        <div ng-view=""></div>
+    </div>
+    <script>
+        var myApp = angular.module("myApp", []);
+
+        myApp.config(function ($routeProvider) {
+            $routeProvider
+                .when('/Insert', {
+                    controller: 'PersonInsertCtrl',
+                    templateUrl: '/Content/Templates/Insert.html'
+                })
+                .when('/Normal', {
+                    controller: 'PersonCtrl',
+                    templateUrl: '/Content/Templates/Normal.html'
+                })
+                .otherwise({ redirectTo: '/Normal' });
+        });
+
+        myApp.factory('DataFactory', function () {
+            return {
+                Data:[{ Name: 'John', Phone: '555-1276' }
+                                , { Name: 'Mary', Phone: '800-BIG-MARY' }
+                                , { Name: 'Mike', Phone: '555-4321' }
+                                , { Name: 'Adam', Phone: '555-5678' }
+                                , { Name: 'Julie', Phone: '555-8765' }]
+            };
+        });
+
+        myApp.service('PersonService', function (DataFactory) {
+            var arr = DataFactory.Data;
+            this.AddItme = function (name, phone) {
+                arr.push({ Name: name, Phone: phone });
+            };
+            this.GetData = function () {
+                return arr;
+            };
+        });
+
+        myApp.controller('PersonCtrl', function ($scope, PersonService) {
+            var vModel = {}
+            ;
+            $scope.vModel = vModel;
+            vModel.Friends = PersonService.GetData();
+        });
+
+        myApp.controller('PersonInsertCtrl', function ($scope, PersonService, $location) {
+            var vModel = {}
+            ;
+            $scope.vModel = vModel;
+            $scope.Insert = function () {
+                PersonService.AddItme(vModel.NewName, vModel.NewPhone);
+                $location.path('/Normal');
+            };
+            $scope.Back = function () {
+                $location.path('/Normal');
+            }
+        });
+    </script>
+</body>
+</html>

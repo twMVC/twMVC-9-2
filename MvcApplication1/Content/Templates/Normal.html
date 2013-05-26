@@ -1,0 +1,21 @@
+﻿        <p><a href="#/Insert">Insert Data</a></p>
+        <p>search all: <input type="text" ng-model="searchKey.$" /></p>
+        <p>search name: <input type="text" ng-model="searchKey.Name" /></p>
+        <div>
+            <ul>
+                <li ng-repeat="friend in vModel.Friends | filter:searchKey | orderBy:'Name'">
+                    name: {{friend.Name}}, phone: {{friend.Phone}}
+                </li>
+            </ul>
+        </div>
+
+<!--
+        myApp.controller('PersonCtrl', function ($scope, PersonService) {
+            var vModel = {}
+            ;
+            $scope.vModel = vModel;
+            vModel.FirstName = 'Bibby';
+            vModel.LastName = 'Chung';
+            vModel.Friends = PersonService.GetData();
+        });
+-->

@@ -1,0 +1,21 @@
+﻿<div>
+    <p>name:<input type="text" ng-model="vModel.NewName" /></p>
+    <p>phone:<input type="text" ng-model="vModel.NewPhone" /></p>
+    <button ng-click="Insert()">Insert</button> 
+    <button ng-click="Back()">Back</button> 
+</div>
+
+<!--
+        myApp.controller('PersonInsertCtrl', function ($scope, PersonService, $location) {
+            var vModel = {}
+            ;
+            $scope.vModel = vModel;
+            $scope.Insert = function () {
+                PersonService.AddItme(vModel.NewName, vModel.NewPhone);
+                $location.path('/Normal');
+            };
+            $scope.Back = function () {
+                $location.path('/Normal');
+            }
+        });
+-->
