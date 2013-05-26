@@ -1,4 +1,4 @@
-twMVC-9-2
+AngularJS 開發 ASP.NET MVC -twMVC#9
 =========
 
 講者：Bibby （現任MVP、Windows Phone 獨立開發者、twMVC核心講者）
